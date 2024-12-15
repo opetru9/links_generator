@@ -1,0 +1,86 @@
+body{
+    background-color:#222;
+    margin: 0;
+    padding: 0;
+}
+
+.inputSection{
+    width: 100%;
+}
+.inputSection .container{
+    width: 500px;
+    margin: 200px auto 0 auto;
+}
+.inputSection .container .wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+.inputSection .container .wrapper .resultLink{
+    display: none;
+}
+.inputSection .container .wrapper .resultLink.active{
+    display: block;
+    border:1px solid #1672ab;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    width: 800px;
+    position: relative;
+}
+.inputSection .container .wrapper .resultLink button{
+    background-color: #1672ab;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 2px 3px;
+    cursor: pointer;
+    color: aliceblue;
+    position: absolute;
+    top:8px;
+    
+}
+.inputSection .container .wrapper .resultLink button.copyBtn{
+    right: 10px;
+}
+.inputSection .container .wrapper .resultLink button.linkBtn{
+    right: 35px;
+    background-color: #ab3116;
+}
+.inputSection .container .wrapper .resultLink button:hover{
+    background-color: #cecb13;
+    color: #222;
+    transition-duration: .5s;
+}
+.inputSection .container .wrapper #myBtn{
+    width: 150px;
+    height: 50px;
+    font-size: 24px;
+    background-color:#074007;
+    border-color: transparent;
+    border-radius:10px ;
+    cursor: pointer;
+}
+.inputSection .container .wrapper .selectBox{
+    display: flex;
+}
+.inputSection .container .wrapper .selectBox select{
+    box-sizing: border-box;
+   border-color:transparent ;
+   border-radius:0  10px 10px 0;
+   background-color: #1672ab;
+   height: 30px;
+}
+.inputSection .container .wrapper #myBtn:hover{
+   background-color: rgba(42, 173, 24, 0.586);
+   transition: .5s;
+}
+.inputSection .container .input input{
+    box-sizing: border-box;
+    width: 400px;
+    height: 30px;
+    border: 1px solid transparent;
+    border-radius:  10px 0 0 10px;
+    padding-left: 10px;
+}
