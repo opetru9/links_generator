@@ -15,17 +15,24 @@
             <div class="wrapper">
                 
                 <div class="selectBox">
-                    <div class="input">
-                        <input type="text" id="myInput" placeholder=" ex: domainName.com ">
-                    </div>
-                    <select id="select">
-                        <option value="AWS">AWS</option>
-                        <option value="OVH">OVH</option>
-                    </select>
+                    <form id="myForm">
+                        <select id="select">
+                            <option value="OVH">OVH</option>
+                            <option value="CP">CP</option>
+                            <option value="M6">M6</option>
+                            <option value="AWS">AWS</option>
+                            <option value="WP">WP</option>
+                        </select>
+    
+                        <div class="inputBox">
+                            <input type="text" id="myInput" placeholder=" ex: domain.com" pattern="^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$" required>
+                        </div>
+    
+                        <button id="myBtn">Generate</button>
+                    </form>
                 </div>
 
-                <div class="resultLink active" id="resultLink">
-                    https://new-hestiacp-fileharbor.crmart.dev/#/?cd=/test/public_html/&domain=test
+                <div class="resultLink" id="resultLink">
 
                     <button class="linkBtn" id="linkBtn">
                         <i class="fas fa-up-right-from-square"></i>
@@ -36,12 +43,15 @@
                     
                 </div>
 
-                <button id="myBtn">Generate</button>
 
             </div>
         </div>
     </section>
     
+    <div id="copyNotify">Link copied to clipboard!</div>
+    <div id="errCopyNotify">Link copied to clipboard!</div>
+
+
     <script src="scripts.js"></script>
 </body>
 </html>
