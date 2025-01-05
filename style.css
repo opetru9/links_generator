@@ -9,7 +9,7 @@ body{
 }
 .inputSection .container{
     width: 500px;
-    margin: 250px auto 0 auto;
+    margin: 220px auto 0 auto;
 }
 .inputSection .container .wrapper{
     display: flex;
@@ -35,14 +35,11 @@ body{
     outline: #1672ab;
 }
 
-.inputSection .container .wrapper .selectBox form select:hover{
-    background-color: #223863;
-    transition: .5s;
-}
 .inputSection .container .wrapper .selectBox form select:focus{
     outline: 1px solid #ccc;
 
 }
+
 .inputSection .container .inputBox input{
     box-sizing: border-box;
     width: 400px;
@@ -54,23 +51,23 @@ body{
     /* font-weight: 500; */
 }
 #myInput:focus {
-    outline: 5px solid #1672ab; 
-    outline-offset: -1px;
+    outline: 2px solid #1672ab; 
+    outline-offset: -2px;
 }
 
 #myInput:focus.invalid {
     outline: 1.5px solid rgb(205, 43, 43); 
 }
 #myInput:focus.valid {
-    outline: 1px solid #05a005; 
+    outline: 2px solid #05a005; 
 }
+
 /* Generate button */
 .inputSection .container .wrapper #myBtn{
     width: 100px;
     height: 30px;
     font-size: 16px;
     background-color:#0c620c;
-    color: #eee;
     border-color: transparent;
     border-radius:0 10px 10px 0;
     cursor: pointer;
@@ -114,11 +111,16 @@ body{
     background-color: #ab3116;
     
 }
+.inputSection .container .wrapper .resultLink button.linkBtn.cdn{
+    display: none;
+    
+}
 .inputSection .container .wrapper .resultLink button:hover{
     background-color: #cecb13;
     color: #EEE;
     transition-duration: .5s;
 }
+
 /* notificators */
 #copyNotify{
     display: none;
@@ -126,7 +128,7 @@ body{
     font-size: 14px;
     position: fixed;
     top: 15px;
-    right: 15px;
+    left: 15px;
     background-color: green;
     padding:5px 10px ;
     border-radius: 5px;
@@ -140,11 +142,137 @@ body{
     font-size: 14px;
     position: fixed;
     top: 15px;
-    right: 15px;
+    left: 15px;
     background-color: rgb(113, 4, 4);
     padding:5px 10px ;
     border-radius: 5px;
 }
 #errCopyNotify.active{
     display: block;
+}
+
+/* CDN option */
+.cdnIP{
+    display: none;
+}
+.cdnIP.active{
+    margin-top: -20px;
+    display: block;
+    border:1px solid #1672abb2;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    min-width: 600px;
+    padding-right: 70px;
+    position: relative;
+    background-color: #282828;
+}
+.cdnIP .copyIPBtn{
+    background-color: #1672ab;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 2px 3px;
+    cursor: pointer;
+    color: aliceblue;
+    position: absolute;
+    top:8px;
+    right: 10px;
+}
+.cdnIP .copyIPBtn:hover{
+    background-color: #cecb13;
+    color: #EEE;
+    transition-duration: .5s;
+}
+
+/* permanent btns */
+.permanentBtns{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.permanentBtns button{
+    font-size: 14px;
+    background-color:#0c620c;
+    border-color: transparent;
+    cursor: pointer;
+    color: #ddd;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+.permanentBtns button:hover{
+   background-color: rgba(42, 173, 24, 0.586);
+   transition: .5s;
+}
+
+#loginFHbtn {
+    position: relative;
+    cursor: pointer;
+}
+#loginFHbtn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1672abb2;
+    color: #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#loginFHbtn:hover::after {
+    opacity: 1;
+}
+
+#passFHbtn {
+    position: relative;
+    cursor: pointer;
+}
+#passFHbtn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1672abb2;
+    color: #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#passFHbtn:hover::after {
+    opacity: 1;
+}
+
+#cdnIPbtn {
+    position: relative;
+    cursor: pointer;
+}
+#cdnIPbtn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translateX(-70%);
+    background-color: #1672abb2;
+    color: #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#cdnIPbtn:hover::after {
+    opacity: 1;
 }

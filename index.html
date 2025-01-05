@@ -23,10 +23,14 @@
                             <option value="M6">M6</option>
                             <option value="AWS">AWS</option>
                             <option value="WP">WP</option>
+                            <option value="CDN">CDN</option>
                         </select>
     
                         <div class="inputBox">
-                            <input type="text" id="myInput" placeholder=" ex: domain.com" pattern="^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$" required>
+                            <input type="text" id="myInput" 
+                                    placeholder=" ex: domain.com" 
+                                    pattern="^(?!-)[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*(\.[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*)*\.[a-zA-Z]{2,}$" 
+                                    required>
                         </div>
     
                         <button id="myBtn">Generate</button>
@@ -44,13 +48,29 @@
                     
                 </div>
 
+                <div class="cdnIP" id="cdnIP">
+
+                    51.38.91.159
+                    <button class="copyIPBtn" id="copyIPBtn"> 
+                        <i class="fas fa-copy"></i>
+                    </button>
+
+                </div>
+
 
             </div>
         </div>
     </section>
-    
+
+    <div class="permanentBtns">
+        <button id="loginFHbtn" data-tooltip="Copy FileHardbor login">FH login</button>
+        <button id="passFHbtn" data-tooltip="Copy FileHardbor password">FH password</button>
+        <button id="cdnIPbtn" data-tooltip="Copy CDN IP">CDN IP</button>
+    </div>
+
     <div id="copyNotify">Link copied to clipboard!</div>
     <div id="errCopyNotify">Link copied to clipboard!</div>
+
 
 
     <script src="scripts.js"></script>
