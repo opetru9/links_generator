@@ -2,11 +2,7 @@ body{
     background-color:#333;
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
     color: #ddd;
-=======
-    color: #ccc;
->>>>>>> 985cd2f801d7f2b8c34a04d562cdea239614a988
 }
 .inputSection{
     width: 100%;
@@ -38,14 +34,14 @@ body{
 .inputSection .container .wrapper .selectBox form select{
     outline: #1672ab;
 }
-<<<<<<< HEAD
+
 .inputSection .container .wrapper .selectBox form select:hover{
     background-color: #223863;
     transition: .5s;
-=======
+}
 .inputSection .container .wrapper .selectBox form select:focus{
     outline: 1px solid #ccc;
->>>>>>> 985cd2f801d7f2b8c34a04d562cdea239614a988
+
 }
 .inputSection .container .inputBox input{
     box-sizing: border-box;
@@ -66,23 +62,15 @@ body{
     outline: 1.5px solid rgb(205, 43, 43); 
 }
 #myInput:focus.valid {
-<<<<<<< HEAD
-    outline: 1px solid #0b6b0b; 
-=======
     outline: 1px solid #05a005; 
->>>>>>> 985cd2f801d7f2b8c34a04d562cdea239614a988
 }
 /* Generate button */
 .inputSection .container .wrapper #myBtn{
     width: 100px;
     height: 30px;
     font-size: 16px;
-<<<<<<< HEAD
-    background-color:#0e720e;
-=======
     background-color:#0c620c;
     color: #eee;
->>>>>>> 985cd2f801d7f2b8c34a04d562cdea239614a988
     border-color: transparent;
     border-radius:0 10px 10px 0;
     cursor: pointer;
