@@ -2,14 +2,18 @@ body{
     background-color:#333;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     color: #ddd;
+=======
+    color: #ccc;
+>>>>>>> 985cd2f801d7f2b8c34a04d562cdea239614a988
 }
 .inputSection{
     width: 100%;
 }
 .inputSection .container{
     width: 500px;
-    margin: 200px auto 0 auto;
+    margin: 250px auto 0 auto;
 }
 .inputSection .container .wrapper{
     display: flex;
@@ -25,6 +29,7 @@ body{
    border-color:transparent ;
    border-radius:  10px 0 0 10px ;
    background-color: #1672ab;
+   color: #eee;
    height: 30px;
    padding-left: 10px;
    cursor: pointer;
@@ -33,9 +38,14 @@ body{
 .inputSection .container .wrapper .selectBox form select{
     outline: #1672ab;
 }
+<<<<<<< HEAD
 .inputSection .container .wrapper .selectBox form select:hover{
     background-color: #223863;
     transition: .5s;
+=======
+.inputSection .container .wrapper .selectBox form select:focus{
+    outline: 1px solid #ccc;
+>>>>>>> 985cd2f801d7f2b8c34a04d562cdea239614a988
 }
 .inputSection .container .inputBox input{
     box-sizing: border-box;
@@ -43,24 +53,36 @@ body{
     height: 30px;
     border: 1px solid transparent;
     padding-left: 10px;
+    background-color: #ddd;
+    color: #444;
+    /* font-weight: 500; */
 }
 #myInput:focus {
-    outline: 1px solid #1672ab; 
+    outline: 5px solid #1672ab; 
     outline-offset: -1px;
 }
 
 #myInput:focus.invalid {
-    outline: 1px solid rgb(83, 9, 9); 
+    outline: 1.5px solid rgb(205, 43, 43); 
 }
 #myInput:focus.valid {
+<<<<<<< HEAD
     outline: 1px solid #0b6b0b; 
+=======
+    outline: 1px solid #05a005; 
+>>>>>>> 985cd2f801d7f2b8c34a04d562cdea239614a988
 }
 /* Generate button */
 .inputSection .container .wrapper #myBtn{
     width: 100px;
     height: 30px;
     font-size: 16px;
+<<<<<<< HEAD
     background-color:#0e720e;
+=======
+    background-color:#0c620c;
+    color: #eee;
+>>>>>>> 985cd2f801d7f2b8c34a04d562cdea239614a988
     border-color: transparent;
     border-radius:0 10px 10px 0;
     cursor: pointer;
@@ -84,7 +106,7 @@ body{
     min-width: 600px;
     padding-right: 70px;
     position: relative;
-    background-color: #262626;
+    background-color: #282828;
 }
 .inputSection .container .wrapper .resultLink button{
     background-color: #1672ab;
@@ -106,7 +128,7 @@ body{
 }
 .inputSection .container .wrapper .resultLink button:hover{
     background-color: #cecb13;
-    color: #222;
+    color: #EEE;
     transition-duration: .5s;
 }
 /* notificators */
