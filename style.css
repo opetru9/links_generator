@@ -111,10 +111,7 @@ body{
     background-color: #ab3116;
     
 }
-.inputSection .container .wrapper .resultLink button.linkBtn.cdn{
-    display: none;
-    
-}
+
 .inputSection .container .wrapper .resultLink button:hover{
     background-color: #cecb13;
     color: #EEE;

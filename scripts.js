@@ -84,11 +84,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     //   manage if is CDN option
     if (cdn) {
-      // remove link btn
-      linkBtn.classList.add("cdn");
 
       cdnIPelement.classList.add("active");
       const copyIPbtn = document.getElementById("copyIPBtn");
+
+      linkBtn.addEventListener("click", () => {
+        window.open(`https://${resultLink}`, "_blank");
+      });
 
       copyIPbtn.addEventListener("click", () => {
         const cdnIPtoCopy = cdnIPelement.innerText;
@@ -132,7 +134,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     input.value = "";
   }
 
-  // manage permanent copy btns
+  // ------manage permanent copy btns
 
   const loginFH = document.getElementById("loginFHbtn");
   const passFH = document.getElementById("passFHbtn");
