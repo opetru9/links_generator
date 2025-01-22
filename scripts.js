@@ -26,6 +26,25 @@ document.addEventListener("DOMContentLoaded", ()=>{
   // generate new link
   myForm.addEventListener("submit", (e) => {
     e.preventDefault();
+  
+ // remove old event listeners
+  const linkBtn = document.getElementById("linkBtn");
+  const copyIPbtn = document.getElementById("copyIPBtn");
+  const copyBtn = document.getElementById("copyBtn");
+
+  if (linkClickListener) {
+    linkBtn.removeEventListener("click", linkClickListener);
+  }
+  if (linkIPClickListener) {
+    linkBtn.removeEventListener("click",linkIPClickListener);
+  }
+  if (copyIPClickListener) {
+    copyIPbtn?.removeEventListener("click", copyIPClickListener);
+  }
+  if (copyBtnClickListener) {
+    copyBtn.removeEventListener("click", copyBtnClickListener);
+  }
+
     getValue();
   });
 
@@ -33,9 +52,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const linkBtn = document.getElementById("linkBtn");
     const copyBtn = document.getElementById("copyBtn");
 
-    // clear old results
+  // clear old results
     resultLink = "";
     cdn = false;
+    
+    resultElement.classList.remove("active");
+    cdnIPelement.classList.remove("active");
+    linkBtn.classList.remove("cdn");
 
     resultElement.childNodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {
@@ -43,9 +66,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       }
     });
 
-    resultElement.classList.remove("active");
-    cdnIPelement.classList.remove("active");
-    linkBtn.classList.remove("cdn");
+
     //
 
     // take new data
@@ -77,6 +98,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       }
 
       resultElement.classList.add("active");
+
       resultElement.insertAdjacentText("afterbegin", `${resultLink}`);
     }
 
@@ -88,53 +110,70 @@ document.addEventListener("DOMContentLoaded", ()=>{
       cdnIPelement.classList.add("active");
       const copyIPbtn = document.getElementById("copyIPBtn");
 
-      linkBtn.addEventListener("click", () => {
-        window.open(`https://${resultLink}`, "_blank");
-      });
+      linkBtn.addEventListener("click", linkIPClickListener);
 
-      copyIPbtn.addEventListener("click", () => {
-        const cdnIPtoCopy = cdnIPelement.innerText;
-        navigator.clipboard
-          .writeText(cdnIPtoCopy)
-          .then(() => {
-            copyNotifyElement.classList.add("active");
-            setTimeout(
-              () => copyNotifyElement.classList.remove("active"),
-              1000
-            );
-          })
-          .catch((err) => {
-            errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
-            errCopyNotifyElement.classList.add("active");
-          });
-      });
+      copyIPbtn.addEventListener("click", copyIPClickListener);
+
     } else {
       // open resulted link in new tab
-      linkBtn.addEventListener("click", () => {
-        window.open(resultLink, "_blank");
-      });
+      linkBtn.addEventListener("click", linkClickListener);
     }
 
     // copy result link and manage copy notify
-    copyBtn.addEventListener("click", () => {
-      const resultLink = resultElement.innerText;
-      navigator.clipboard
-        .writeText(resultLink)
-        .then(() => {
-          copyNotifyElement.classList.add("active");
-          setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
-        })
-        .catch((err) => {
-          errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
-          errCopyNotifyElement.classList.add("active");
-        });
-    });
+  copyBtn.addEventListener("click", copyBtnClickListener );
 
-    // clear input
-    input.value = "";
-  }
+  
+  
+  
+  // clear input
+  input.value = "";
+}
+// LINK IP listener event funtion
+   function linkIPClickListener() {
+      if (resultLink) {
+         window.open(`https://${resultLink}`, "_blank");
+      }
+    };
 
-  // ------manage permanent copy btns
+// LINK listener event funtion
+   function linkClickListener() {
+      if (resultLink) {
+        window.open(resultLink, "_blank");
+      }
+    };
+
+// COPY IP event function
+    function copyIPClickListener () {
+    const cdnIPtoCopy = cdnIPelement.innerText;
+    navigator.clipboard
+      .writeText(cdnIPtoCopy)
+      .then(() => {
+        copyNotifyElement.classList.add("active");
+        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
+      })
+      .catch((err) => {
+        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
+        errCopyNotifyElement.classList.add("active");
+      });
+  };
+
+
+  // COPY LINK event function
+   function copyBtnClickListener () {
+    const resultLink = resultElement.innerText;
+    navigator.clipboard
+      .writeText(resultLink)
+      .then(() => {
+        copyNotifyElement.classList.add("active");
+        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
+      })
+      .catch((err) => {
+        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
+        errCopyNotifyElement.classList.add("active");
+      });
+  };
+
+// ------manage permanent copy btns---------------------------------------------------------------------------------------------
 
   const loginFH = document.getElementById("loginFHbtn");
   const passFH = document.getElementById("passFHbtn");
@@ -172,7 +211,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
   // CDN IP
   cdnIP.addEventListener("click", () => {
-    const textToCopy = "51.38.91.159";
+    const textToCopy = "57.128.187.88";
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => {
