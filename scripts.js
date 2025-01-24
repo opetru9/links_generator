@@ -35,9 +35,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   if (linkClickListener) {
     linkBtn.removeEventListener("click", linkClickListener);
   }
-  if (linkIPClickListener) {
-    linkBtn.removeEventListener("click",linkIPClickListener);
-  }
   if (copyIPClickListener) {
     copyIPbtn?.removeEventListener("click", copyIPClickListener);
   }
@@ -66,9 +63,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
       }
     });
 
-
-    //
-
     // take new data
     myInputValue = input.value;
     mySelectValue = mySelect.value;
@@ -92,7 +86,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
           resultLink = `https://${myInputValue}/wp-login.php`;
           break;
         case "CDN":
-          resultLink = `cdn.${myInputValue}`;
+          resultLink = `https://cdn.${myInputValue}/wp-content/uploads/blazing-bison/header.png`;
           cdn = true;
           break;
       }
@@ -106,34 +100,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     //   manage if is CDN option
     if (cdn) {
-
       cdnIPelement.classList.add("active");
       const copyIPbtn = document.getElementById("copyIPBtn");
+      copyIPbtn.addEventListener("click", copyIPClickListener); 
+    } 
 
-      linkBtn.addEventListener("click", linkIPClickListener);
-
-      copyIPbtn.addEventListener("click", copyIPClickListener);
-
-    } else {
-      // open resulted link in new tab
-      linkBtn.addEventListener("click", linkClickListener);
-    }
+    // opent link in blank
+    linkBtn.addEventListener("click", linkClickListener);
 
     // copy result link and manage copy notify
-  copyBtn.addEventListener("click", copyBtnClickListener );
-
-  
-  
-  
+    copyBtn.addEventListener("click", copyBtnClickListener );
+    
   // clear input
   input.value = "";
 }
-// LINK IP listener event funtion
-   function linkIPClickListener() {
-      if (resultLink) {
-         window.open(`https://${resultLink}`, "_blank");
-      }
-    };
+
 
 // LINK listener event funtion
    function linkClickListener() {
