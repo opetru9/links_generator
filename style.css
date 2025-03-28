@@ -14,8 +14,9 @@ body{
 .inputSection .container .wrapper{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     align-items: center;
+    
 }
 .inputSection .container .wrapper .selectBox form{
     display: flex;
@@ -30,6 +31,7 @@ body{
    padding-left: 10px;
    cursor: pointer;
    color: #ddd;
+   box-shadow:0 0 2px 1px #1672ab;
 }
 .inputSection .container .wrapper .selectBox form select{
     outline: #1672ab;
@@ -48,6 +50,8 @@ body{
     padding-left: 10px;
     background-color: #ddd;
     color: #444;
+    margin-bottom: 30px;
+    box-shadow:0 0 2px 1px #1672ab;
     /* font-weight: 500; */
 }
 #myInput:focus {
@@ -72,6 +76,7 @@ body{
     border-radius:0 10px 10px 0;
     cursor: pointer;
     color: #ddd;
+    box-shadow: 0px 0px 2px 1px #0c620c;
 }
 .inputSection .container .wrapper #myBtn:hover{
    background-color: rgba(42, 173, 24, 0.586);
@@ -117,6 +122,70 @@ body{
     color: #EEE;
     transition-duration: .5s;
 }
+/* CDN option */
+.cdnIP{
+    display: none;
+}
+.cdnIP.active{
+    /* margin-top: -20px; */
+    display: block;
+    border:1px solid #1672abb2;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    min-width: 600px;
+    padding-right: 70px;
+    position: relative;
+    background-color: #282828;
+}
+.cdnIP .copyIPBtn{
+    background-color: #1672ab;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 2px 3px;
+    cursor: pointer;
+    color: aliceblue;
+    position: absolute;
+    top:8px;
+    right: 10px;
+}
+.cdnIP .copyIPBtn:hover{
+    background-color: #cecb13;
+    color: #EEE;
+    transition-duration: .5s;
+}
+.cdnLink{
+    display: none;
+}
+.cdnLink.active{
+    display: block;
+    border:1px solid #1672abb2;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    min-width: 600px;
+    padding-right: 70px;
+    position: relative;
+    background-color: #282828;
+}
+.copyCdnBtn{
+    background-color: #1672ab;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 2px 3px;
+    cursor: pointer;
+    color: aliceblue;
+    position: absolute;
+    top:8px;
+    right: 10px;
+}
+.copyCdnBtn:hover{
+    background-color: #cecb13;
+    color: #EEE;
+    transition-duration: .5s;
+}
 
 /* notificators */
 #copyNotify{
@@ -148,39 +217,7 @@ body{
     display: block;
 }
 
-/* CDN option */
-.cdnIP{
-    display: none;
-}
-.cdnIP.active{
-    margin-top: -20px;
-    display: block;
-    border:1px solid #1672abb2;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    min-width: 600px;
-    padding-right: 70px;
-    position: relative;
-    background-color: #282828;
-}
-.cdnIP .copyIPBtn{
-    background-color: #1672ab;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    padding: 2px 3px;
-    cursor: pointer;
-    color: aliceblue;
-    position: absolute;
-    top:8px;
-    right: 10px;
-}
-.cdnIP .copyIPBtn:hover{
-    background-color: #cecb13;
-    color: #EEE;
-    transition-duration: .5s;
-}
+
 
 /* permanent btns */
 .permanentBtns{

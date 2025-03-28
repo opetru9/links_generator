@@ -6,22 +6,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
   const resultElement = document.getElementById("resultLink");
   const input = document.getElementById("myInput");
   const cdnIPelement = document.getElementById("cdnIP");
+  const cdnLinkElement = document.getElementById("cdnLink")
   const copyNotifyElement = document.getElementById("copyNotify");
   const errCopyNotifyElement = document.getElementById("errCopyNotify");
 
   let resultLink = "";
+  let resultCdnLink = ""
   let cdn = false;
 
   // change input outline color
-  input.addEventListener("input", () => {
-    if (input.checkValidity()) {
-      input.classList.remove("invalid");
-      input.classList.add("valid");
-    } else {
-      input.classList.remove("valid");
-      input.classList.add("invalid");
-    }
-  });
+  // input.addEventListener("input", () => {
+  //   if (input.checkValidity()) {
+  //     input.classList.remove("invalid");
+  //     input.classList.add("valid");
+  //   } else {
+  //     input.classList.remove("valid");
+  //     input.classList.add("invalid");
+  //   }
+  // });
 
   // generate new link
   myForm.addEventListener("submit", (e) => {
@@ -51,8 +53,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
   // clear old results
     resultLink = "";
+    resultCdnLink = "";
+    myInputValue = ""
     cdn = false;
     
+    cdnLinkElement.classList.remove("active");
     resultElement.classList.remove("active");
     cdnIPelement.classList.remove("active");
     linkBtn.classList.remove("cdn");
@@ -62,9 +67,26 @@ document.addEventListener("DOMContentLoaded", ()=>{
         node.remove();
       }
     });
+    cdnLinkElement.childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.remove();
+      }
+    });
+
 
     // take new data
-    myInputValue = input.value;
+    myInputValue = input.value.trim()
+    if (myInputValue.startsWith('http://') || myInputValue.startsWith('https://')) {
+      try{
+        const url =  new URL(myInputValue);
+        myInputValue = url.hostname
+        console.log(myInputValue)
+      }
+      catch (err){
+        console.log(err)
+      }
+  }
+
     mySelectValue = mySelect.value;
 
     // give result in base of option
@@ -87,6 +109,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
           break;
         case "CDN":
           resultLink = `https://cdn.${myInputValue}/wp-content/uploads/blazing-bison/header.png`;
+          resultCdnLink = `cdn.${myInputValue}`
           cdn = true;
           break;
       }
@@ -100,8 +123,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     //   manage if is CDN option
     if (cdn) {
-      cdnIPelement.classList.add("active");
+      const copyCdnBtn = document.getElementById("copyCdnBtn")
       const copyIPbtn = document.getElementById("copyIPBtn");
+
+      cdnLinkElement.insertAdjacentText("afterbegin", `${resultCdnLink}`);
+      
+      cdnIPelement.classList.add("active");
+      cdnLinkElement.classList.add("active");
+      copyCdnBtn.addEventListener("click", copyCdnBtnClickListener)
       copyIPbtn.addEventListener("click", copyIPClickListener); 
     } 
 
@@ -144,6 +173,20 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const resultLink = resultElement.innerText;
     navigator.clipboard
       .writeText(resultLink)
+      .then(() => {
+        copyNotifyElement.classList.add("active");
+        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
+      })
+      .catch((err) => {
+        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
+        errCopyNotifyElement.classList.add("active");
+      });
+  };
+  // COPY CDN LINK event function
+   function copyCdnBtnClickListener () {
+    const cdnResultLink = cdnLinkElement.innerText;
+    navigator.clipboard
+      .writeText(cdnResultLink)
       .then(() => {
         copyNotifyElement.classList.add("active");
         setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
