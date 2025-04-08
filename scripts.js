@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   const myForm = document.getElementById("myForm");
   const mySelect = document.getElementById("select");
   const resultElement = document.getElementById("resultLink");
+  const resultText = document.getElementById("resultText");
   const input = document.getElementById("myInput");
   const cdnIPelement = document.getElementById("cdnIP");
   const cdnLinkElement = document.getElementById("cdnLink")
@@ -54,7 +55,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   // clear old results
     resultLink = "";
     resultCdnLink = "";
-    myInputValue = ""
+    myInputValue = "";
     cdn = false;
     
     cdnLinkElement.classList.remove("active");
@@ -62,11 +63,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     cdnIPelement.classList.remove("active");
     linkBtn.classList.remove("cdn");
 
-    resultElement.childNodes.forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        node.remove();
-      }
-    });
+    resultText.innerText = ""
     cdnLinkElement.childNodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {
         node.remove();
@@ -75,7 +72,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
     // take new data
-    myInputValue = input.value.trim()
+    myInputValue = input.value.trim().toLowerCase()
     if (myInputValue.startsWith('http://') || myInputValue.startsWith('https://')) {
       try{
         const url =  new URL(myInputValue);
@@ -116,7 +113,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
       resultElement.classList.add("active");
 
-      resultElement.insertAdjacentText("afterbegin", `${resultLink}`);
+      resultText.textContent = resultLink;
     }
 
     //  work with generated link:
