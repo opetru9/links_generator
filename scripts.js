@@ -1,252 +1,151 @@
-document.addEventListener("DOMContentLoaded", ()=>{
-    
-  let myInputValue = "";
-  const myForm = document.getElementById("myForm");
-  const mySelect = document.getElementById("select");
-  const resultElement = document.getElementById("resultLink");
-  const resultText = document.getElementById("resultText");
-  const input = document.getElementById("myInput");
-  const cdnIPelement = document.getElementById("cdnIP");
-  const cdnLinkElement = document.getElementById("cdnLink")
-  const copyNotifyElement = document.getElementById("copyNotify");
-  const errCopyNotifyElement = document.getElementById("errCopyNotify");
-
-  let resultLink = "";
-  let resultCdnLink = ""
-  let cdn = false;
-
-  // change input outline color
-  // input.addEventListener("input", () => {
-  //   if (input.checkValidity()) {
-  //     input.classList.remove("invalid");
-  //     input.classList.add("valid");
-  //   } else {
-  //     input.classList.remove("valid");
-  //     input.classList.add("invalid");
-  //   }
-  // });
-
-  // generate new link
-  myForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-  
- // remove old event listeners
-  const linkBtn = document.getElementById("linkBtn");
-  const copyIPbtn = document.getElementById("copyIPBtn");
-  const copyBtn = document.getElementById("copyBtn");
-
-  if (linkClickListener) {
-    linkBtn.removeEventListener("click", linkClickListener);
-  }
-  if (copyIPClickListener) {
-    copyIPbtn?.removeEventListener("click", copyIPClickListener);
-  }
-  if (copyBtnClickListener) {
-    copyBtn.removeEventListener("click", copyBtnClickListener);
-  }
-
-    getValue();
-  });
-
-  function getValue() {
-    const linkBtn = document.getElementById("linkBtn");
-    const copyBtn = document.getElementById("copyBtn");
-
-  // clear old results
-    resultLink = "";
-    resultCdnLink = "";
-    myInputValue = "";
-    cdn = false;
-    
-    cdnLinkElement.classList.remove("active");
-    resultElement.classList.remove("active");
-    cdnIPelement.classList.remove("active");
-    linkBtn.classList.remove("cdn");
-
-    resultText.innerText = ""
-    cdnLinkElement.childNodes.forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        node.remove();
-      }
-    });
-
-
-    // take new data
-    myInputValue = input.value.trim().toLowerCase()
-    if (myInputValue.startsWith('http://') || myInputValue.startsWith('https://')) {
-      try{
-        const url =  new URL(myInputValue);
-        myInputValue = url.hostname
-        console.log(myInputValue)
-      }
-      catch (err){
-        console.log(err)
-      }
-  }
-
-    mySelectValue = mySelect.value;
-
-    // give result in base of option
-    if (myInputValue) {
-      switch (mySelectValue) {
-        case "AWS":
-          resultLink = `https://awsfileharbor.crmart.dev/#/?cd=/${myInputValue}/public_html/&domain=${myInputValue}`;
-          break;
-        case "OVH":
-          resultLink = `https://new-hestiacp-fileharbor.crmart.dev/#/?cd=/${myInputValue}/public_html/&domain=${myInputValue}`;
-          break;
-        case "CP":
-          resultLink = `https://newfileharbor.crmart.dev/#/?cd=/${myInputValue}/public_html/&domain=${myInputValue}`;
-          break;
-        case "M6":
-          resultLink = `https://aws-m6-fileharbor.crmart.dev/#/?cd=/${myInputValue}/public_html/&domain=${myInputValue}`;
-          break;
-        case "WP":
-          resultLink = `https://${myInputValue}/wp-login.php`;
-          break;
-        case "CDN":
-          resultLink = `https://cdn.${myInputValue}/wp-content/uploads/blazing-bison/header.png`;
-          resultCdnLink = `cdn.${myInputValue}`
-          cdn = true;
-          break;
-      }
-
-      resultElement.classList.add("active");
-
-      resultText.textContent = resultLink;
-    }
-
-    //  work with generated link:
-
-    //   manage if is CDN option
-    if (cdn) {
-      const copyCdnBtn = document.getElementById("copyCdnBtn")
-      const copyIPbtn = document.getElementById("copyIPBtn");
-
-      cdnLinkElement.insertAdjacentText("afterbegin", `${resultCdnLink}`);
-      
-      cdnIPelement.classList.add("active");
-      cdnLinkElement.classList.add("active");
-      copyCdnBtn.addEventListener("click", copyCdnBtnClickListener)
-      copyIPbtn.addEventListener("click", copyIPClickListener); 
-    } 
-
-    // opent link in blank
-    linkBtn.addEventListener("click", linkClickListener);
-
-    // copy result link and manage copy notify
-    copyBtn.addEventListener("click", copyBtnClickListener );
-    
-  // clear input
-  input.value = "";
-}
-
-
-// LINK listener event funtion
-   function linkClickListener() {
-      if (resultLink) {
-        window.open(resultLink, "_blank");
-      }
+"use strict";
+document.addEventListener("DOMContentLoaded", () => {
+    let serverDomains = {
+        DO: "do-hestiacp-fileharbor.hypetracker.org",
+        OVH: "new-hestiacp-fileharbor.crmart.dev",
+        APP: "apps-hestiacp-fileharbor.hypetracker.org"
     };
-
-// COPY IP event function
-    function copyIPClickListener () {
-    const cdnIPtoCopy = cdnIPelement.innerText;
-    navigator.clipboard
-      .writeText(cdnIPtoCopy)
-      .then(() => {
-        copyNotifyElement.classList.add("active");
-        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
-      })
-      .catch((err) => {
-        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
-        errCopyNotifyElement.classList.add("active");
-      });
-  };
-
-
-  // COPY LINK event function
-   function copyBtnClickListener () {
-    const resultLink = resultElement.innerText;
-    navigator.clipboard
-      .writeText(resultLink)
-      .then(() => {
-        copyNotifyElement.classList.add("active");
-        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
-      })
-      .catch((err) => {
-        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
-        errCopyNotifyElement.classList.add("active");
-      });
-  };
-  // COPY CDN LINK event function
-   function copyCdnBtnClickListener () {
-    const cdnResultLink = cdnLinkElement.innerText;
-    navigator.clipboard
-      .writeText(cdnResultLink)
-      .then(() => {
-        copyNotifyElement.classList.add("active");
-        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
-      })
-      .catch((err) => {
-        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
-        errCopyNotifyElement.classList.add("active");
-      });
-  };
-
-// ------manage permanent copy btns---------------------------------------------------------------------------------------------
-
-  const loginFH = document.getElementById("loginFHbtn");
-  const passFH = document.getElementById("passFHbtn");
-  const cdnIP = document.getElementById("cdnIPbtn");
-
-  // File Hardbor login
-  loginFH.addEventListener("click", () => {
-    const textToCopy = "sOp4B7Dw9Hz3Ml@Qa84YuLzM3dK";
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        copyNotifyElement.classList.add("active");
-        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
-      })
-      .catch((err) => {
-        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
-        errCopyNotifyElement.classList.add("active");
-      });
-  });
-
-  // File Hardbor password
-  passFH.addEventListener("click", () => {
-    const textToCopy = "nM4@zO7Hg3o9j7Sqr43HkL34p7gAs";
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        copyNotifyElement.classList.add("active");
-        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
-      })
-      .catch((err) => {
-        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
-        errCopyNotifyElement.classList.add("active");
-      });
-  });
-
-  // CDN IP
-  cdnIP.addEventListener("click", () => {
-    const textToCopy = "57.128.187.88";
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        copyNotifyElement.classList.add("active");
-        setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
-      })
-      .catch((err) => {
-        errCopyNotifyElement.innerText = `Error copying the link: ${err}`;
-        errCopyNotifyElement.classList.add("active");
-      });
-  });
+    let myInputValue = "";
+    const myForm = document.getElementById("myForm");
+    const mySelect = document.getElementById("select");
+    const resultElement = document.getElementById("resultLink");
+    const resultText = document.getElementById("resultText");
+    const input = document.getElementById("myInput");
+    const cdnIPelement = document.getElementById("cdnIP");
+    const cdnLinkElement = document.getElementById("cdnLink");
+    const copyNotifyElement = document.getElementById("copyNotify");
+    const errCopyNotifyElement = document.getElementById("errCopyNotify");
+    let resultLink = "";
+    let resultCdnLink = "";
+    let cdn = false;
+    // change input outline color
+    // input.addEventListener("input", () => {
+    //   if (input.checkValidity()) {
+    //     input.classList.remove("invalid");
+    //     input.classList.add("valid");
+    //   } else {
+    //     input.classList.remove("valid");
+    //     input.classList.add("invalid");
+    //   }
+    // });
+    // generate new link
+    myForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // remove old event listeners
+        const linkBtn = document.getElementById("linkBtn");
+        const copyIPbtn = document.getElementById("copyIPBtn");
+        const copyBtn = document.getElementById("copyBtn");
+        if (linkClickListener) {
+            linkBtn.removeEventListener("click", linkClickListener);
+        }
+        if (copyIPClickListener) {
+            copyIPbtn?.removeEventListener("click", copyIPClickListener);
+        }
+        if (copyBtnClickListener) {
+            copyBtn.removeEventListener("click", copyBtnClickListener);
+        }
+        getValue();
+    });
+    function getValue() {
+        const linkBtn = document.getElementById("linkBtn");
+        const copyBtn = document.getElementById("copyBtn");
+        // clear old results
+        resultLink = "";
+        resultCdnLink = "";
+        myInputValue = "";
+        cdn = false;
+        cdnLinkElement.classList.remove("active");
+        resultElement.classList.remove("active");
+        cdnIPelement.classList.remove("active");
+        linkBtn.classList.remove("cdn");
+        resultText.innerText = "";
+        cdnLinkElement.childNodes.forEach((node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                node.remove();
+            }
+        });
+        // take new data
+        myInputValue = input.value.trim().toLowerCase();
+        if (myInputValue.startsWith('http://') || myInputValue.startsWith('https://')) {
+            try {
+                const url = new URL(myInputValue);
+                myInputValue = url.hostname;
+                console.log(myInputValue);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        let mySelectValue = mySelect.value;
+        // give result in base of option
+        if (myInputValue) {
+            const domain = serverDomains[mySelectValue];
+            resultLink = `https://${domain}/#/?cd=/${myInputValue}/public_html/&domain=${myInputValue}`;
+            resultElement.classList.add("active");
+            resultText.textContent = resultLink;
+        }
+        //  work with generated link:
+        //   manage if is CDN option
+        if (cdn) {
+            const copyCdnBtn = document.getElementById("copyCdnBtn");
+            const copyIPbtn = document.getElementById("copyIPBtn");
+            cdnLinkElement.insertAdjacentText("afterbegin", `${resultCdnLink}`);
+            cdnIPelement.classList.add("active");
+            cdnLinkElement.classList.add("active");
+            copyCdnBtn.addEventListener("click", copyCdnBtnClickListener);
+            copyIPbtn.addEventListener("click", copyIPClickListener);
+        }
+        // opent link in blank
+        linkBtn.addEventListener("click", linkClickListener);
+        // copy result link and manage copy notify
+        copyBtn.addEventListener("click", copyBtnClickListener);
+        // clear input
+        input.value = "";
+    }
+    // LINK listener event funtion
+    function linkClickListener() {
+        if (resultLink) {
+            window.open(resultLink, "_blank");
+        }
+    }
+    ;
+    // COPY event funtion
+    function copyToClipboard(text) {
+        navigator.clipboard
+            .writeText(text)
+            .then(() => {
+            copyNotifyElement.classList.add("active");
+            setTimeout(() => copyNotifyElement.classList.remove("active"), 1000);
+        })
+            .catch((err) => {
+            let errText = "";
+            if (err instanceof Error) {
+                errText = err.message;
+            }
+            else {
+                errText = "unknow error";
+            }
+            console.log(errText);
+            errCopyNotifyElement.innerText = `Error copying the link: ${errText}`;
+            errCopyNotifyElement.classList.add("active");
+        });
+    }
+    // COPY IP event function
+    function copyIPClickListener() {
+        const cdnIPtoCopy = cdnIPelement.innerText;
+        copyToClipboard(cdnIPtoCopy);
+    }
+    ;
+    // COPY LINK event function
+    function copyBtnClickListener() {
+        const resultLinkText = resultElement.innerText;
+        copyToClipboard(resultLinkText);
+    }
+    ;
+    // COPY CDN LINK event function
+    function copyCdnBtnClickListener() {
+        const cdnResultLink = cdnLinkElement.innerText;
+        copyToClipboard(cdnResultLink);
+    }
+    ;
 });
-
-
-
-
-

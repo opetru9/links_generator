@@ -10,6 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 
     <section class="inputSection">
         <div class="container">
@@ -18,18 +19,15 @@
                 <div class="selectBox">
                     <form id="myForm">
                         <select id="select">
+                            <option value="APP">APP</option>
+                            <option value="DO">OVH DO</option>
                             <option value="OVH">OVH 2</option>
-                            <option value="CP">OVH 1</option>
-                            <option value="M6">M6</option>
-                            <option value="AWS">AWS</option>
-                            <option value="WP">WP</option>
-                            <option value="CDN">CDN</option>
                         </select>
     
                         <div class="inputBox">
                             <input type="text" id="myInput" 
                                     placeholder=" ex: site.com or https://site.com" 
-                                    
+                                    autofocus
                                     required>
                         </div>
     
@@ -72,11 +70,11 @@
         </div>
     </section>
 
-    <div class="permanentBtns">
+    <!-- <div class="permanentBtns">
         <button id="loginFHbtn" data-tooltip="Copy FileHardbor login">FH login</button>
         <button id="passFHbtn" data-tooltip="Copy FileHardbor password">FH password</button>
         <button id="cdnIPbtn" data-tooltip="Copy CDN IP">CDN IP</button>
-    </div>
+    </div> -->
 
     <div id="copyNotify">Link copied to clipboard!</div>
     <div id="errCopyNotify">Link copied to clipboard!</div>
