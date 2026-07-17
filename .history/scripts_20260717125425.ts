@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", ()=>{
-   
-  enum ServerOption {
+    
+   enum ServerOption {
     APP = "APP",
     DO = "DO",
     OVH = "OVH"

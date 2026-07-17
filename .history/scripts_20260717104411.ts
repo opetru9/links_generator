@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", ()=>{
-   
+    
   enum ServerOption {
-    APP = "APP",
-    DO = "DO",
+    APP,
+    DO ,
     OVH = "OVH"
   };
-  const serverDomains :Readonly< Record<ServerOption, string >> = {
+  let serverDomains : Record<ServerOption, string > = {
       DO :"do-hestiacp-fileharbor.hypetracker.org",
       OVH:"new-hestiacp-fileharbor.crmart.dev",
       APP:"apps-hestiacp-fileharbor.hypetracker.org"  

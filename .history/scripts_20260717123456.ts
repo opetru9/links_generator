@@ -1,14 +1,18 @@
 document.addEventListener("DOMContentLoaded", ()=>{
-   
-  enum ServerOption {
+    
+   enum ServerOption {
     APP = "APP",
     DO = "DO",
     OVH = "OVH"
   };
-  const serverDomains :Readonly< Record<ServerOption, string >> = {
-      DO :"do-hestiacp-fileharbor.hypetracker.org",
-      OVH:"new-hestiacp-fileharbor.crmart.dev",
-      APP:"apps-hestiacp-fileharbor.hypetracker.org"  
+  // let serverDomains : Record<ServerOption, string > = {
+  //     DO :"do-hestiacp-fileharbor.hypetracker.org",
+  //     OVH:"new-hestiacp-fileharbor.crmart.dev",
+  //     APP:"apps-hestiacp-fileharbor.hypetracker.org"  
+  // }
+  interface ServerDomains      DO :"do-hestiacp-fileharbor.hypetracker.org",
+  /  OVH:"new-hestiacp-fileharbor.crmart.dev",
+  /  APP:"apps-hestiacp-fileharbor.hypetracker.org"  
   }
 
   let myInputValue = "";

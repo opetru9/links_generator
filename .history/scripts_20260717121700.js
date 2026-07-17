@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ServerOption["DO"] = "DO";
         ServerOption["OVH"] = "OVH";
     })(ServerOption || (ServerOption = {}));
-    ;
-    const serverDomains = {
+    
+    let serverDomains = {
         DO: "do-hestiacp-fileharbor.hypetracker.org",
         OVH: "new-hestiacp-fileharbor.crmart.dev",
         APP: "apps-hestiacp-fileharbor.hypetracker.org"
